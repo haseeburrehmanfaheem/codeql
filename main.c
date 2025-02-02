@@ -1,26 +1,16 @@
-#include <stdio.h>
 #include <stdlib.h>
-
-#define BUFFSIZE 256
+#include <stdio.h>
     
-int read_file(const char *filename) {
-    FILE* ptr = fopen(filename, "r");
+#define BUFSIZE 256
     
-    if (ptr == NULL) {
-        printf("File cannot be opened.\n");
-        return(-1);
+// This program prints the size of a specified file in bytes
+int main(int argc, char** argv) {
+    // Ensure that the user supplied exactly one command line argument
+    if (argc != 2) { 
+        fprintf(stderr, "Please provide the address of a file as an input.\n");
+        return -1;
     }
-    
-    char buff[BUFFSIZE];
-    
-    while (fgets(buff, BUFFSIZE, ptr) != NULL) {
-        printf("%s", buff);
-    }
-        
-    return 0; 
-}
-
-int main() {
-    const char *filename = "test.txt";  // Change this to an actual file path
-    return read_file(filename);
+    char cmd[BUFSIZE] = "wc -c < ";
+    strcat(cmd, argv[1]);
+    system(cmd);
 }
