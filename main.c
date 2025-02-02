@@ -19,3 +19,8 @@ int read_file(const char *filename) {
         
     return 0; 
 }
+
+int main() {
+    const char *filename = "test.txt";  // Change this to an actual file path
+    return read_file(filename);
+}
